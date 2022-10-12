@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %} {% block body %}
+
+<main class="container mt-5">
+  <div class="row">
+    <div class="col-md-4  card card-body">
+      <h1 class="display-1 text-center">Tareas</h1>
+        <table class="table table-info table-striped table-bordered table-sm">
+          <thead>
+            <td>Titulo</td>
+            <td>Descripcion</td>
+            <td>Usuario</td>
+            {% if tarea.datecompleted != None %}
+            <td>Fecha Completada</td>
+            {% endif %}
+            <td>Acciones</td>
+          </thead>
+          {% for tarea in tareas %}
+          <tbody>
+            {% if tarea.important == True %}
+            <td class="fw-bold text-success">{{tarea.title}}</td>
+            {% else %}
+            <td>{{tarea.title}}</td>
+            {% endif %}
+            <td>{{tarea.description}}</td>
+            <td>{{tarea.user.username}}</td>
+            {% if tarea.datecompleted != None %}
+            <td>{{tarea.datecompleted}}</td>
+            {% else %}
+            {% endif %}
+            <td>
+              <a href="/detailTask/{{tarea.id}}" class="btn btn-info">Editar</a>
+              
+              <!-- formulario boton eliminar -->
+              <form action="/detailTask/{{tarea.id}}/eliminar" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger">Eliminar</button>
+              </form>
+            </td>
+          </tbody>
+          {% endfor %}
+        </table>
+    </div>
+  </div>
+</main>
+
+
+{% endblock %}

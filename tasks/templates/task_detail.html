@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <form method="POST" class='card card-body'>
+                <h1 class="display-3 text-center">Detalles Tarea</h1>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-success">Actualizar</button>
+            </form>
+
+
+            <!-- formulario boton completar -->
+            <form action="/detailTask/{{task.id}}/completar" method="post" class='card card-body'>
+                {% csrf_token %}
+                <button class="btn btn-warning">Completar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock %}

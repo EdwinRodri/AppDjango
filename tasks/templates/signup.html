@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block body %}
+
+<main class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body">
+                <h1>Crear Cuenta</h1>
+                {{error}}
+    
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for=""class="mt-3">Username:</label>
+                    <input type="text" name="username" class="form-control" placeholder="@username">
+                    <label for="" class="mt-2">Password:</label>
+                    <input type="password" name="password1" class="form-control" placeholder="*******">
+                    <label for="" class="mt-2">Password confirmation</label>
+                    <input type="password" name="password2" class="form-control" placeholder="*******">
+                </div>
+                <div class="container text-center">
+                    <button class="btn btn-success">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+</main>
+
+{% endblock %}
